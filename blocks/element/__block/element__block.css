@@ -1,0 +1,5 @@
+.element__block {
+  display: grid;
+  grid-template-columns: 1fr 22px;
+  padding: 25px 30px 31px 21px;
+}
