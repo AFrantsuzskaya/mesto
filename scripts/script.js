@@ -17,15 +17,14 @@ function togglePopup() {
    popup.classList.toggle('popup_open');
 }
 
-openPopupButton.addEventListener('click', togglePopup);
-closePopupButton.addEventListener('click', togglePopup);
-
 function formSubmitHandler (event) {
     event.preventDefault();
     
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
+    togglePopup();
 }
 
+openPopupButton.addEventListener('click', togglePopup);
+closePopupButton.addEventListener('click', togglePopup);
 formElement.addEventListener('submit', formSubmitHandler); 
-submitButton.addEventListener('click', togglePopup);

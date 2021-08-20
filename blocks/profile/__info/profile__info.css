@@ -5,14 +5,11 @@
   padding-left: 30px;
   justify-content: space-between;
   align-items: center;
-  max-height: 73px;
 }
 
 @media screen and (max-width: 767px) {
   .profile__info {
     max-width: 282px;
     padding: 26px 20px 33px 45px;
-    
   }
-  
 }

@@ -1,9 +1,0 @@
-.top-indent {
-  margin-top: 21px;
-}
-
-@media screen and (max-width:767px) {
-  .top-indent {
-    margin-top: 17px;
-  }
-}

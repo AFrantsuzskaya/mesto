@@ -1,8 +1,10 @@
 .logo {
   background: url('../../images/logo.svg') no-repeat;
   width: 142px;
-  height: 33px;
-  padding: 45px 0 41px;
+  height: 29px;
+  padding-top: 45px;
+  cursor: pointer;
+  transition: opacity 1s linear;
 }
 
 .logo:hover {
