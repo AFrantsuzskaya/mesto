@@ -2,5 +2,12 @@
   max-width: 880px;
   text-align: start;
   padding: 67px 0 60px;
-  margin: 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    width: 282px;
+    padding: 10px 0 36px;
+  }
+  
 }

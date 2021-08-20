@@ -1,0 +1,11 @@
+.relative-location {
+  position: relative;
+  left: 240px;    
+}
+
+@media screen and (max-width:767px) {
+    .relative-location {
+      left: 131px;
+    }
+    
+  }

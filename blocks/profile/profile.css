@@ -3,5 +3,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+  .profile {
+    flex-direction: column;
+    max-width: 282px;
+    justify-content: center;
+  }
+  
 }

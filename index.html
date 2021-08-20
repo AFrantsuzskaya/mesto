@@ -12,72 +12,86 @@
 </head>
 <body>
   <div class="page">
-    <header class="header">
-      <a href="#" class="logo"></a>
+    <header class="header page__header">
+      <a href="#" class="logo header__logo"></a>
     </header>
     
-    <main>
-      <div class="profile">
+    <main class="content">
+      <section class="profile profile__content">
         <div class="profile__wrapper">
           <img class="profile__avatar" src="./images/Avatar.jpg" alt="Личная фотография"></img>
           <div class="profile__info">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name indent">Жак-Ив Кусто</h1>
             <button type="button" class="button profile__edit-button"></button>
-            <p class="profile__occupation">Исследователь океана</p>  
+            <p class="profile__occupation indent">Исследователь океана</p>  
           </div>
         </div>
           <button type="button" class="button profile__add-button"></button>
-      </div>
-      <ul class="elements">
+      </section>
+      <section>
+      <ul class="elements elements__content">
         <li class="element">
           <img src="./images/kirill-pershin-1088404-unsplash (1).jpg" alt="фотография исторического здания" class="element__image">
           <div class="element__block">
-            <h2 class="element__title">Карачаевск</h2>
+            <h2 class="element__title indent">Карачаевск</h2>
             <button type="button" class="element__button"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="фотография заката" class="element__image">
           <div class="element__block">
-            <h2 class="element__title">Гора Эльбрус</h2>
+            <h2 class="element__title indent">Гора Эльбрус</h2>
             <button type="button" class="element__button"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="фотография вершин гор" class="element__image">
           <div class="element__block">
-            <h2 class="element__title">Домбай</h2>
+            <h2 class="element__title indent">Домбай</h2>
             <button class="element__button"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="фотография заката" class="element__image">
           <div class="element__block">
-            <h2 class="element__title">Гора Эльбрус</h2>
+            <h2 class="element__title indent">Гора Эльбрус</h2>
             <button type="button" class="element__button"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="фотография вершин гор" class="element__image">
           <div class="element__block">
-            <h2 class="element__title">Домбай</h2>
+            <h2 class="element__title indent">Домбай</h2>
             <button type="button" class="element__button"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/kirill-pershin-1088404-unsplash (1).jpg" alt="фотография исторического здания" class="element__image">
           <div class="element__block">
-            <h2 class="element__title">Карачаево-Черкесия</h2>
+            <h2 class="element__title indent">Карачаево-Черкесия</h2>
             <button type="button" class="element__button"></button>
             </div>
         </li>
       </ul>
+    </section>
     </main>
     
-    <footer class="footer">
-      <p class="footer__title">&#169; 2020 Mesto Russia</p>
+    <footer class="footer page__footer">
+      <p class="footer__title indent">&#169; 2020 Mesto Russia</p>
     </footer>
+
+    <section class="popup page__popup fix-location">
+      <button type="button" class="popup__close-button relative-location"></button>
+      <div class="popup__container">
+        <h2 class="popup__title indent">Редактировать профиль</h2>
+        <form name="form" action="" class="popup__form page__popup">
+          <input type="text" name="username" placeholder="Имя" class="popup__field popup__field_type_mame bottom-indent">
+          <input type="text" name="occupation" placeholder="О себе" class="popup__field popup__field_type_about-me bottom-indent">
+          <button type="submit" class="popup__submit-button top-indent">Сохранить</button>
+        </form>
+      </div>
+    </section>
   </div>
-  
+  <script src="./scripts/script.js"></script>
 </body>
 </html>

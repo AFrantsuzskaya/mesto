@@ -4,3 +4,16 @@
   height: 33px;
   padding: 45px 0 41px;
 }
+
+.logo:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width:767px) {
+  .logo {
+    background: url('../../images/logo-767.svg') no-repeat;
+    width: 103px;
+    height: 24px;
+    padding: 0;
+  }
+}
