@@ -1,5 +1,5 @@
 .profile__occupation {
-  max-width: 100%;
+  max-width: 237px;
   min-width: 100%;
   font-style: normal;
   font-weight: 400;
@@ -15,7 +15,7 @@
   .profile__occupation {
     font-size: 14px;
     line-height: 17px;
-    padding-left: 16px;    
+    text-align: center;
   }
   
 }
