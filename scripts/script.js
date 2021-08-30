@@ -76,4 +76,42 @@ const initialCards = [
   }
 ];
 
+// add cards
+
+const popupFormAddCard = document.querySelector('.popup__form_block_add-card');
+const addCardButton = document.querySelector('.popup__submit-button_type_add');
+
+const elementsCard = document.querySelector('.elements__content'); // контейнер для публикации картинок
+
+//функция добавления карточки
+
+const elementTemplate = document.querySelector('#element__template').content;
+
+const addCard = (card) => {
+  const elementCard = elementTemplate.querySelector('.element').cloneNode(true);
+  elementCard.querySelector('.element__image').src = card.link;
+  elementCard.querySelector('.element__image').alt = 'фотография';
+  elementCard.querySelector('.element__title').textContent = card.name;
+  
+  elementsCard.prepend(elementCard);
+};
+
+// обработчик submit формы
+
+const formAddHandler = (event) => {
+  event.preventDefault();
+
+  addCard({
+    name: placeNameInput.value,
+    link: addLinkInput.value
+  })
+  togglePopup(popupTypeAdd);
+  popupFormAddCard.reset();
+}
+
+popupFormAddCard.addEventListener('submit', formAddHandler);
+
+initialCards.forEach((card) => {
+  addCard(card);
+});
 
