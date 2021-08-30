@@ -1,6 +1,6 @@
 let openPopupButton = document.querySelector('.profile__edit-button'); 
-let popup = document.querySelector('.popup');
-let closePopupButton = document.querySelector('.popup__close-button');
+let popupSubmit = document.querySelector('.popup_type_submit');
+let closePopupInfoButton = document.querySelector('.popup__close-button_block_info');
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__occupation');
 let formElement = document.querySelector('.popup__form');
@@ -8,13 +8,15 @@ let nameInput = document.querySelector('.popup__field_type_mame');
 let jobInput = document.querySelector('.popup__field_type_about-me');
 let submitButton = document.querySelector('.popup__submit-button');
 
-function togglePopup() {
-  if (!popup.classList.contains('popup_open')) {
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileJob.textContent;
-}
-  
-   popup.classList.toggle('popup_open');
+const openPopupAddButton = document.querySelector('.profile__add-button');
+const popupTypeAdd = document.querySelector('.popup_type_add');
+const placeNameInput = document.querySelector('.popup__field_type_placename');
+const addLinkInput = document.querySelector('.popup__field_type_link');
+const submitButtonAdd = document.querySelector('.popup__submit-button_type_add');
+const closePopupAddButton = document.querySelector('.popup__close-button_block_add');
+
+function togglePopup(popup) {
+  popup.classList.toggle('popup_open'); 
 }
 
 function formSubmitHandler (event) {
@@ -22,9 +24,30 @@ function formSubmitHandler (event) {
     
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    togglePopup();
+    togglePopup(popupSubmit);
 }
 
-openPopupButton.addEventListener('click', togglePopup);
-closePopupButton.addEventListener('click', togglePopup);
+openPopupButton.addEventListener('click', function() {
+  if (!popupSubmit.classList.contains('popup_open')) {
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileJob.textContent;
+}
+togglePopup(popupSubmit);
+});
+
+openPopupAddButton.addEventListener('click', function() {
+  togglePopup(popupTypeAdd);
+});
+
+closePopupInfoButton.addEventListener('click', function() {
+  togglePopup(popupSubmit);
+});
+
+closePopupAddButton.addEventListener('click', function(){
+  togglePopup(popupTypeAdd);
+})
+
 formElement.addEventListener('submit', formSubmitHandler); 
+
+
+
