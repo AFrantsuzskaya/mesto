@@ -20,7 +20,7 @@
       <section class="profile content__profile">
         <div class="profile__wrapper">
           <img class="profile__avatar" src="./images/Avatar.jpg" alt="Личная фотография">
-          <div class="profile__info">
+            <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button type="button" class="button profile__edit-button"></button>
             <p class="profile__occupation">Исследователь океана</p>  
@@ -32,6 +32,7 @@
       <ul class="elements__content content__elements">
         <li class="element">
           <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фотография исторического здания" class="element__image">
+          <button type="button" class="button element__trash-button"></button>
           <div class="element__block">
             <h2 class="element__title">Карачаевск</h2>
             <button type="button" class="element__button"></button>
@@ -84,7 +85,7 @@
       <button type="button" class="popup__close-button popup__close-button_block_info"></button>
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="form" class="popup__form page__popup">
+        <form name="form" class="popup__form popup__form_blocK_info page__popup">
           <input type="text" name="username" placeholder="Имя" class="popup__field popup__field_type_mame" autocomplete="off">
           <input type="text" name="occupation" placeholder="О себе" class="popup__field popup__field_type_about-me" autocomplete="off">
           <button type="submit" class="popup__submit-button">Сохранить</button>
@@ -96,7 +97,7 @@
       <button type="button" class="popup__close-button popup__close-button_block_add"></button>
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
-        <form name="form" class="popup__form page__popup">
+        <form name="form" class="popup__form popup__form_blocлk_add-card page__popup">
           <input type="text" name="plcename" placeholder="Название" class="popup__field popup__field_type_placename" autocomplete="off">
           <input type="text" name="link" placeholder="Ссылка на картинку" class="popup__field popup__field_type_link" autocomplete="off">
           <button type="submit" class="popup__submit-button popup__submit-button_type_add">Создать</button>
