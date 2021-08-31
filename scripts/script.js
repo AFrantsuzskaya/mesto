@@ -92,6 +92,12 @@ const addCard = (card) => {
   elementCard.querySelector('.element__image').src = card.link;
   elementCard.querySelector('.element__image').alt = 'фотография';
   elementCard.querySelector('.element__title').textContent = card.name;
+  elementCard.querySelector('.element__button').addEventListener('click', function(event) {
+    event.target.classList.toggle('element__button_active');
+  });
+  elementCard.querySelector('.element__trash-button').addEventListener('click', function() {
+    elementCard.remove();
+  });
   
   elementsCard.prepend(elementCard);
 };
@@ -114,4 +120,13 @@ popupFormAddCard.addEventListener('submit', formAddHandler);
 initialCards.forEach((card) => {
   addCard(card);
 });
+
+//like
+
+const likeButton = document.querySelector('.element__button');
+const likeButtonActive = document.querySelector('.element__button_active');
+
+
+
+
 
