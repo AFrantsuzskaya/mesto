@@ -15,6 +15,11 @@ const addLinkInput = document.querySelector('.popup__field_type_link');
 const submitButtonAdd = document.querySelector('.popup__submit-button_type_add');
 const closePopupAddButton = document.querySelector('.popup__close-button_block_add');
 
+const popupTypeImage = document.querySelector('.popup_type_image');
+const popupImage = document.querySelector('.popup__image');
+const popupTitle = document.querySelector('.popup__title_type_name');
+const closePopupImageButton = document.querySelector('.popup__close-button_block_image');
+
 function togglePopup(popup) {
   popup.classList.toggle('popup_open'); 
 }
@@ -45,7 +50,11 @@ closePopupInfoButton.addEventListener('click', function() {
 
 closePopupAddButton.addEventListener('click', function(){
   togglePopup(popupTypeAdd);
-})
+});
+
+closePopupImageButton.addEventListener('click', function() {
+  togglePopup(popupTypeImage);
+});
 
 formElement.addEventListener('submit', formSubmitHandler); 
 
@@ -97,6 +106,14 @@ const addCard = (card) => {
   });
   elementCard.querySelector('.element__trash-button').addEventListener('click', function() {
     elementCard.remove();
+  });
+  
+  elementCard.querySelector('.element__image').addEventListener('click', function(event)  {
+    const img = event.target;
+    popupImage.src = img.src;
+    popupTitle.textContent = card.name; //textContent
+    togglePopup(popupTypeImage);
+
   });
   
   elementsCard.prepend(elementCard);

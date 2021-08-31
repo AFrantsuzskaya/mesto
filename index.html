@@ -105,18 +105,12 @@
       </div>
     </section>
 
-    <section class="popup popup_type_add page__popup">
-      <button type="button" class="popup__close-button popup__close-button_block_add"></button>
-      <div class="popup__container">
-        <h2 class="popup__title">Новое место</h2>
-        <form name="form" class="popup__form popup__form_block_add-card page__popup">
-          <input type="text" name="placename" placeholder="Название" class="popup__field popup__field_type_placename" autocomplete="off">
-          <input type="text" name="link" placeholder="Ссылка на картинку" class="popup__field popup__field_type_link" autocomplete="off">
-          <button type="submit" class="popup__submit-button popup__submit-button_type_add">Создать</button>
-        </form>
-      </div>
+    <section class="popup popup_type_image">
+      <button type="button" class="popup__close-button popup__close-button_block_image"></button>
+      <img class="popup__image">
+      <h2 class="popup__title_type_name"></h2>
     </section>
-    
+
   </div>
   <template id="element__template">
     <li class="element">
