@@ -91,7 +91,7 @@ const popupFormAddCard = document.querySelector('.popup__form_block_add-card');
 const addCardButton = document.querySelector('.popup__submit-button_type_add');
 
 const elementsCard = document.querySelector('.elements__content'); // контейнер для публикации картинок
-
+const cardElementTitle = document.querySelector('.element__title');
 //функция добавления карточки
 
 const elementTemplate = document.querySelector('#element__template').content;
@@ -111,7 +111,7 @@ const addCard = (card) => {
   elementCard.querySelector('.element__image').addEventListener('click', function(event)  {
     const img = event.target;
     popupImage.src = img.src;
-    popupTitle.textContent = card.name; //textContent
+    popupTitle.textContent = event.target.closest('.element').querySelector('.element__title').textContent;
     togglePopup(popupTypeImage);
 
   });

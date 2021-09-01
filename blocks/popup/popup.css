@@ -3,11 +3,15 @@
   height: 100%;
   min-width: 320px;
   background-color: rgb(0, 0, 0, 0.5);
-  /*display: none;*/
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: fixed;
   top: 0;  
+  visibility: hidden;
+  opacity: 0;
+  transition: visibiliti 0s, opacity 10s linnear;
 }
+
 

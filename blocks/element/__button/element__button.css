@@ -3,7 +3,7 @@
   cursor: pointer;
   padding: 0;
   border: none;
-  transition: opacity 2s linear;
+  transition: opacity 1s linear;
 }
 
 .element__button:hover {
