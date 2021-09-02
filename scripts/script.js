@@ -1,12 +1,16 @@
-let openPopupButton = document.querySelector('.profile__edit-button'); 
-let popupSubmit = document.querySelector('.popup_type_submit');
-let closePopupInfoButton = document.querySelector('.popup__close-button_block_info');
-let profileName = document.querySelector('.profile__name');
-let profileJob = document.querySelector('.profile__occupation');
-let formElement = document.querySelector('.popup__form_blocK_info');
-let nameInput = document.querySelector('.popup__field_type_mame');
-let jobInput = document.querySelector('.popup__field_type_about-me');
-let submitButton = document.querySelector('.popup__submit-button');
+//submit-popup
+
+const openPopupButton = document.querySelector('.profile__edit-button'); 
+const popupSubmit = document.querySelector('.popup_type_submit');
+const closePopupInfoButton = document.querySelector('.popup__close-button_block_info');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__occupation');
+const formElement = document.querySelector('.popup__form_blocK_info');
+const nameInput = document.querySelector('.popup__field_type_mame');
+const jobInput = document.querySelector('.popup__field_type_about-me');
+const submitButton = document.querySelector('.popup__submit-button');
+
+//add-popup
 
 const openPopupAddButton = document.querySelector('.profile__add-button');
 const popupTypeAdd = document.querySelector('.popup_type_add');
@@ -15,48 +19,27 @@ const addLinkInput = document.querySelector('.popup__field_type_link');
 const submitButtonAdd = document.querySelector('.popup__submit-button_type_add');
 const closePopupAddButton = document.querySelector('.popup__close-button_block_add');
 
+//image-popup
+
 const popupTypeImage = document.querySelector('.popup_type_image');
 const popupImage = document.querySelector('.popup__image');
 const popupTitle = document.querySelector('.popup__title_type_name');
 const closePopupImageButton = document.querySelector('.popup__close-button_block_image');
 
-function togglePopup(popup) {
-  popup.classList.toggle('popup_open'); 
-}
+//like
 
-function formSubmitHandler (event) {
-    event.preventDefault();
-    
-    profileName.textContent = nameInput.value;
-    profileJob.textContent = jobInput.value;
-    togglePopup(popupSubmit);
-}
+const likeButton = document.querySelector('.element__button');
+const likeButtonActive = document.querySelector('.element__button_active');
 
-openPopupButton.addEventListener('click', function() {
-  if (!popupSubmit.classList.contains('popup_open')) {
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileJob.textContent;
-}
-togglePopup(popupSubmit);
-});
+//cards
 
-openPopupAddButton.addEventListener('click', function() {
-  togglePopup(popupTypeAdd);
-});
+const popupFormAddCard = document.querySelector('.popup__form_block_add-card');
+const addCardButton = document.querySelector('.popup__submit-button_type_add');
 
-closePopupInfoButton.addEventListener('click', function() {
-  togglePopup(popupSubmit);
-});
+const elementsCard = document.querySelector('.elements__content'); // контейнер для публикации картинок
+const cardElementTitle = document.querySelector('.element__title');
 
-closePopupAddButton.addEventListener('click', function(){
-  togglePopup(popupTypeAdd);
-});
-
-closePopupImageButton.addEventListener('click', function() {
-  togglePopup(popupTypeImage);
-});
-
-formElement.addEventListener('submit', formSubmitHandler); 
+const elementTemplate = document.querySelector('#element__template').content;
 
 const initialCards = [
   {
@@ -85,18 +68,21 @@ const initialCards = [
   }
 ];
 
-// add cards
+//функции
 
-const popupFormAddCard = document.querySelector('.popup__form_block_add-card');
-const addCardButton = document.querySelector('.popup__submit-button_type_add');
+function togglePopup(popup) {
+  popup.classList.toggle('popup_open'); 
+}
 
-const elementsCard = document.querySelector('.elements__content'); // контейнер для публикации картинок
-const cardElementTitle = document.querySelector('.element__title');
-//функция добавления карточки
+function formSubmitHandler (event) {
+    event.preventDefault();
+    
+    profileName.textContent = nameInput.value;
+    profileJob.textContent = jobInput.value;
+    togglePopup(popupSubmit);
+}
 
-const elementTemplate = document.querySelector('#element__template').content;
-
-const addCard = (card) => {
+function addCard(card) {
   const elementCard = elementTemplate.querySelector('.element').cloneNode(true);
   elementCard.querySelector('.element__image').src = card.link;
   elementCard.querySelector('.element__image').alt = 'фотография';
@@ -107,43 +93,62 @@ const addCard = (card) => {
   elementCard.querySelector('.element__trash-button').addEventListener('click', function() {
     elementCard.remove();
   });
-  
   elementCard.querySelector('.element__image').addEventListener('click', function(event)  {
     const img = event.target;
     popupImage.src = img.src;
-    popupTitle.textContent = event.target.closest('.element').querySelector('.element__title').textContent;
+    popupTitle.textContent = event.target.closest('.element')
+    .querySelector('.element__title').textContent;
     togglePopup(popupTypeImage);
-
   });
-  
-  elementsCard.prepend(elementCard);
+  return elementCard;
 };
 
-// обработчик submit формы
+function renderCard(card) {
+  elementsCard.prepend(addCard(card));
+}
 
-const formAddHandler = (event) => {
+function formAddHandler(event) {
   event.preventDefault();
 
-  addCard({
+  renderCard({
     name: placeNameInput.value,
     link: addLinkInput.value
-  })
+  });
   togglePopup(popupTypeAdd);
   popupFormAddCard.reset();
 }
 
-popupFormAddCard.addEventListener('submit', formAddHandler);
-
 initialCards.forEach((card) => {
   addCard(card);
+  renderCard(card);
 });
 
-//like
+//обработчики
 
-const likeButton = document.querySelector('.element__button');
-const likeButtonActive = document.querySelector('.element__button_active');
+openPopupButton.addEventListener('click', function() {
+  if (!popupSubmit.classList.contains('popup_open')) {
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileJob.textContent;
+}
+togglePopup(popupSubmit);
+});
 
+openPopupAddButton.addEventListener('click', () => {
+  togglePopup(popupTypeAdd);
+});
 
+closePopupInfoButton.addEventListener('click', () => {
+  togglePopup(popupSubmit);
+});
 
+closePopupAddButton.addEventListener('click', () => {
+  togglePopup(popupTypeAdd);
+});
 
+closePopupImageButton.addEventListener('click', () => {
+  togglePopup(popupTypeImage);
+});
 
+formElement.addEventListener('submit', formSubmitHandler); 
+
+popupFormAddCard.addEventListener('submit', formAddHandler);

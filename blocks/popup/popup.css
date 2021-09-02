@@ -11,7 +11,7 @@
   top: 0;  
   visibility: hidden;
   opacity: 0;
-  transition: visibiliti 0s, opacity 10s linnear;
+  transition: all .3s ease-in-out;
 }
 
 
