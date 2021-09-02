@@ -23,7 +23,7 @@ const closePopupAddButton = document.querySelector('.popup__close-button_block_a
 
 const popupTypeImage = document.querySelector('.popup_type_image');
 const popupImage = document.querySelector('.popup__image');
-const popupTitle = document.querySelector('.popup__title_type_name');
+const popupTitle = document.querySelector('.popup__name-title');
 const closePopupImageButton = document.querySelector('.popup__close-button_block_image');
 
 //like
