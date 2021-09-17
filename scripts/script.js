@@ -1,3 +1,4 @@
+
 //submit-popup
 
 const openSubmitPopupButton = document.querySelector('.profile__edit-button'); 
@@ -41,6 +42,10 @@ const cardElementTitle = document.querySelector('.element__title');
 
 const elementTemplate = document.querySelector('#element__template').content;
 
+// список попапов
+
+const popupsList = document.querySelectorAll('.popup');
+
 //функции
 
 function openPopup (popup) {
@@ -50,6 +55,15 @@ function openPopup (popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_open');
 }
+
+// ф-ция закрытия при нажатии Esc
+
+const closePopupEsc = (evt) => {
+  if (evt.keyCode === 27) {
+    const openPopapSelector = document.querySelector('.popup_open');
+    closePopup(openPopapSelector);
+  }
+}; 
 
 function handleProfileFormSubmit (event) {
     event.preventDefault();
@@ -102,6 +116,7 @@ function handleElementLikeButton (event) {
   event.target.classList.toggle('element__button_active');
 }
 
+
 //обработчики
 
 openSubmitPopupButton.addEventListener('click', function() {
@@ -131,3 +146,15 @@ closePopupImageButton.addEventListener('click', () => {
 popupFormElementInfo.addEventListener('submit', handleProfileFormSubmit); 
 
 popupFormAddCard.addEventListener('submit', handleElementFormSubmit);
+
+document.addEventListener('keydown', closePopupEsc);
+
+//закрытие попап при клике вне формы 
+
+popupsList.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if(evt.target.classList.contains('popup_open')) {
+      closePopup(popup);
+    }
+  });
+});
