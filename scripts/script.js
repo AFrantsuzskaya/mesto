@@ -46,20 +46,24 @@ const elementTemplate = document.querySelector('#element__template').content;
 
 const popupsList = document.querySelectorAll('.popup');
 
+const closePopupKeyCode = 27;
+
 //функции
 
 function openPopup (popup) {
   popup.classList.add('popup_open');
+  document.addEventListener('keydown', closePopupEsc);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_open');
+  document.removeEventListener('keydown', closePopupEsc);
 }
 
 // ф-ция закрытия при нажатии Esc
 
 const closePopupEsc = (evt) => {
-  if (evt.keyCode === 27) {
+  if (evt.keyCode === closePopupKeyCode) {
     const openPopapSelector = document.querySelector('.popup_open');
     closePopup(openPopapSelector);
   }
@@ -105,6 +109,7 @@ function handleElementFormSubmit(event) {
   });
   closePopup(popupTypeAdd);
   popupFormAddCard.reset();
+  disableSubmitButton(submitButtonAdd, actionClassesObj.inactiveButtonClass);
 }
 
 initialCards.forEach((card) => {
@@ -147,12 +152,10 @@ popupFormElementInfo.addEventListener('submit', handleProfileFormSubmit);
 
 popupFormAddCard.addEventListener('submit', handleElementFormSubmit);
 
-document.addEventListener('keydown', closePopupEsc);
-
 //закрытие попап при клике вне формы 
 
 popupsList.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
+  popup.addEventListener('mousedown', (evt) => {
     if(evt.target.classList.contains('popup_open')) {
       closePopup(popup);
     }

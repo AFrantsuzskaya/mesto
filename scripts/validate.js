@@ -1,10 +1,3 @@
-//проверка начально пустых полей
-const hasNotInputValues = (inputList) => {
-  return inputList.every(inputElement => {
-      return inputElement.value.lenght === 0;          
-  });
-}
-
 //навешивание обработчиков событий формы
 const setEventListeners = (formElement, inputSelector, submitButtonSelector, inputErrorClass, errorClass, inactiveButtonClass) => {
   formElement.addEventListener('submit', (event) => {
@@ -33,7 +26,7 @@ const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 //отображение кнопки сабмит
 const toggleButtonState = (formElement, inputList, submitButtonSelector, inactiveButtonClass) => {
   const buttonElement = formElement.querySelector(submitButtonSelector);
-  if (hasInvalidInput(inputList) || hasNotInputValues(inputList)) {
+  if (hasInvalidInput(inputList)) { 
     disableSubmitButton(buttonElement, inactiveButtonClass);
   } else {
     enableSubmitButton(buttonElement, inactiveButtonClass);
@@ -86,12 +79,14 @@ const enableValidation = (config) => {
   });
 };
 
-// вызов функции 
-enableValidation({
+const actionClassesObj = {
   formSelector: '.popup__form',
   inputSelector: '.popup__field',
   submitButtonSelector: '.popup__submit-button',
   inactiveButtonClass: 'popup__submit-button_disabled',
   inputErrorClass: 'popup__field_type_error',
   errorClass: 'popup__error_visible'
-});
+};
+
+// вызов функции 
+enableValidation(actionClassesObj);
