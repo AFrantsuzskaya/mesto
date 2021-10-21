@@ -1,0 +1,38 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "## Описание проекта Приложение mesto, реализован для отработки навыков, полученных после прохождении семи спринтов на курсе - Веб-разрабротчик, в Яндекс.Практикуме. Приложении содержит раздел о пользователе и раздел с фотографиями. В работе отработаны следующие темы - флексбокс-верстка, постороение блоков при помощи grid, позиционирование элементов, ссылки, списки, кнопки и формы для ввода текстовых данных. С использованием JavaScript реализованы возможность открытия/закрытия модальных окон, внесение данных о пользователе, добавление и удаление карточек с фотографиями, увеличение фотографии при клике на изображение, валидация полей ввода данных в popup, код организован согласно ООП. Страница оформлялась по технологии БЭМ, по схеме организации файловой структуры - nested.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AFrantsuzskaya/mesto.git"
+  },
+  "author": "Anastasiya Frantsuzskaya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AFrantsuzskaya/mesto/issues"
+  },
+  "homepage": "https://github.com/AFrantsuzskaya/mesto#readme",
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "autoprefixer": "^10.3.7",
+    "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.4.0",
+    "cssnano": "^5.0.8",
+    "html-webpack-plugin": "^5.4.0",
+    "mini-css-extract-plugin": "^2.4.2",
+    "postcss-loader": "^6.2.0",
+    "webpack": "^5.59.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.3.1"
+  },
+  "dependencies": {
+    "core-js": "^3.18.3"
+  }
+}

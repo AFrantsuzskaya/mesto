@@ -6,7 +6,7 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm  from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-
+import './index.css';
 // попап с картинкой
 const popupImage = new PopupWithImage('.popup_type_image');
 // попап добавляющий новую карточку
@@ -63,4 +63,3 @@ openPopupAddButton.addEventListener('click', () => {
   popupAddCard.open();
   popupAddCard.setEventListeners();
 });
-
