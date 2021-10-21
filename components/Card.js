@@ -32,17 +32,20 @@ export default class Card {
       this._removeCard();
     });
     this._element.querySelector('.element__image').addEventListener('click', () => {
-      this._handleImageClick(this._name, this._link);
+      this._handleImageClick({name: this._name, link: this._link});
+      
     });
   }
   
   render() {
     this._element = this._getCardTemplate();
+    const elementImage = this._element.querySelector('.element__image');
     this._setEventListeners();
-    this._element.querySelector('.element__image').src = this._link;
-    this._element.querySelector('.element__image').alt = this._name;
+    elementImage.src = this._link;
+    elementImage.alt = this._name;
     this._element.querySelector('.element__title').textContent = this._name;
     return this._element;
+    //возвращает готовую карточку
   }
 }
   
