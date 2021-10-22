@@ -22,6 +22,7 @@ export default class Card {
   
   _removeCard(evt) {
     this._element.querySelector('.element__trash-button').closest('.element').remove();
+    this._element = null;
   }
   
   _setEventListeners() {

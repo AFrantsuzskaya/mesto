@@ -21,7 +21,7 @@ export default class FormValidator {
   }
 
   //включение/выключение кнопок сабмит 
-  _disableSubmitButton = () => {
+  disableSubmitButton = () => {
     this._buttonElement.classList.add(this._config.inactiveButtonClass);
     this._buttonElement.setAttribute('disabled', '');
   };
@@ -50,7 +50,7 @@ export default class FormValidator {
   //отображение кнопки сабмит
   _toggleButtonState = () => {
       if (this._hasInvalidInput()) { 
-      this._disableSubmitButton();
+      this.disableSubmitButton();
     } else {
       this._enableSubmitButton();
     }
