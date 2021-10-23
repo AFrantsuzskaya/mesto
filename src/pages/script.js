@@ -1,3 +1,4 @@
+import { validationConfig, configSelectors } from "../utils/constants.js";
 import { initialCards } from "../utils/initial-сards.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -11,25 +12,6 @@ const openProfilePopupButton = document.querySelector('.profile__edit-button');
 const popupFormElementInfo = document.querySelector('.popup__form_block_info');
 const openPopupAddButton = document.querySelector('.profile__add-button');
 const popupFormAddCard = document.querySelector('.popup__form_block_add-card');
-
-const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__field',
-  submitButtonSelector: '.popup__submit-button',
-  inactiveButtonClass: 'popup__submit-button_disabled',
-  inputErrorClass: 'popup__field_type_error',
-  errorClass: 'popup__error_visible'
-}
-const configSelectors = {
-  popupImageSelector: '.popup_type_image',
-  popupAddCardSelector: '.popup_type_add',
-  poppupProfileSelector: '.popup_type_submit',
-  templateSelector: '#element__template',
-  elementsContainer: '.elements__content',
-  profileName: '.profile__name',
-  profileAbout: '.profile__occupation',
-  formInfo: 'form[name="form_info"]'
-}
 
 // попап с картинкой
 const popupImage = new PopupWithImage(configSelectors.popupImageSelector);
@@ -66,9 +48,9 @@ const userInfo = new UserInfo ({
   aboutSelector: configSelectors.profileAbout });
 
 //валидация форм
-const formInfoValid = new FormValidator(config, popupFormElementInfo);
+const formInfoValid = new FormValidator(validationConfig, popupFormElementInfo);
 formInfoValid.enableValidation();
-const formAddCardValid = new FormValidator(config, popupFormAddCard);
+const formAddCardValid = new FormValidator(validationConfig, popupFormAddCard);
 formAddCardValid.enableValidation();
 
 
