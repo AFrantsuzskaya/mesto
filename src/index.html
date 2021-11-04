@@ -8,7 +8,7 @@
   <meta name="keywords" content="Приложение, путешествия, интересные места, фото, личный профиль">
   <meta name="author" content="">
   <title>Приложение mesto</title>
-  
+  <!--<link rel="stylesheet" href="./pages/index.css">-->
 </head>
 <body>
   <div class="page">
@@ -19,7 +19,9 @@
     <main class="content">
       <section class="profile content__profile">
         <div class="profile__wrapper">
-          <img class="profile__avatar" src="<%=require('./images/Avatar.jpg')%>" alt="Личная фотография">
+          <button type="button" class="profile__avatar">
+            <div class="profile__overlay"></div>
+          </button>
             <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button type="button" class="button profile__edit-button"></button>
@@ -43,8 +45,8 @@
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form name="form_info" class="popup__form popup__form_block_info page__popup" novalidate>
-          <input type="text" id="user-name" name="username" placeholder="Имя" 
-          class="popup__field popup__field_type_mame" autocomplete="off" required minlength="2" maxlength="40">
+          <input type="text" id="user-name" name="name" placeholder="Имя" 
+          class="popup__field popup__field_type_name" autocomplete="off" required minlength="2" maxlength="40">
           <span id="user-name-error" class="popup__field-error"></span>
           <input type="text" id="about" name="about" placeholder="О себе" 
           class="popup__field popup__field_type_about-me" autocomplete="off" required minlength="2" maxlength="200">
@@ -78,6 +80,27 @@
       </div>
     </section>
 
+    <section class="popup popup_type_avatar page__popup">
+      <button type="button" class="popup__close-button popup__close-button_block_info"></button>
+      <div class="popup__container">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form name="form_avatar" class="popup__form popup__form_block_avatar page__popup" novalidate>
+          <input type="url" id="avatar" name="avatar" placeholder="Ссылка" 
+          class="popup__field popup__field_type_avatar" autocomplete="off" required>
+          <span id="avatar-error" class="popup__field-error"></span>
+          <button type="submit" name="button" class="popup__submit-button">Сохранить</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="popup popup_type_delete page__popup">
+      <button type="button" class="popup__close-button popup__close-button_block_info"></button>
+      <div class="popup__container">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button type="button" name="button" class="popup__submit-button">Да</button>
+      </div>
+    </section>
+
   </div>
   <template id="element__template">
     <li class="element">
@@ -85,7 +108,10 @@
       <button type="button" class="button element__trash-button"></button>
       <div class="element__block">
         <h2 class="element__title"></h2>
-        <button type="button" class="element__button"></button>
+        <div class="elemet__like-container">
+          <button type="button" class="element__button"></button>
+          <div class="element__counter">0</div>
+        </div>
       </div>
     </li>
   </template>

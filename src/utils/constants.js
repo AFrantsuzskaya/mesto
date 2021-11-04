@@ -1,3 +1,5 @@
+import Api from "../components/Api"
+
 export const validationConfig = {
     formSelector: '.popup__form',
     inputSelector: '.popup__field',
@@ -14,5 +16,10 @@ export const configSelectors = {
     elementsContainer: '.elements__content',
     profileName: '.profile__name',
     profileAbout: '.profile__occupation',
-    formInfo: 'form[name="form_info"]'
+    formInfo: 'form[name="form_info"]',
+    avatar: '.profile__avatar',
+    popupAvatar: '.popup_type_avatar',
+    popupDelete: '.popup_type_delete'
   }
+
+ 

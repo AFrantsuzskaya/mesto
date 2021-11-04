@@ -5,4 +5,4 @@
 
 **HTML5, CSS, JavaScript**
 
-* [Ссылка на проект](https://afrantsuzskaya.github.io/mesto/index.html)
+* [Ссылка на проект](https://afrantsuzskaya.github.io/mesto/)
