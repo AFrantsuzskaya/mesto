@@ -39,7 +39,7 @@ const cardList = new Section({
 
 
 const api = new Api({
-  address: 'http://mesto.nomoreparties.co/v1',
+  address: 'https://mesto.nomoreparties.co/v1',
   groupId: 'cohort-29',
   token: 'f416e76f-617f-4e84-afcd-d10e230d2054'
 })
