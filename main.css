@@ -477,7 +477,14 @@ template {
   height: 120px;
   border-radius: 50%;
   background-image: url(fce2f02bd24ff3aff94d.jpg);
+  background-size: cover;
+  background-position: center;
+  border: none;
+  transition: opacity 1s linear;
+  cursor: pointer;
 }
+
+
 .profile__edit-button {
   width: 24px;
   height: 24px;
@@ -568,6 +575,17 @@ template {
     justify-content: center;
   }
 }
+.profile__overlay {
+  background: center center transparent url(93c771f5f8582261951d.png) no-repeat;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.profile__overlay:hover {
+  opacity: 0.7;
+}
 .logo {
   background: url(03b78ada3425e9132ff3.svg) no-repeat;
   width: 142px;
@@ -636,6 +654,8 @@ template {
   padding: 0;
   border: none;
   transition: opacity 1s linear;
+  min-height: 19px;
+  min-width: 22px;
 }
 
 .element__button:hover {
@@ -685,6 +705,18 @@ template {
 .element__trash-button:hover {
     opacity: 0.5;
   }
+.elemet__like-container {
+  display: block;
+
+}
+.element__counter {
+ /* min-height: 13px;
+  min-width: 10px;*/
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: black;
+}
 .footer {
   max-width: 880px;
   text-align: start;
@@ -854,6 +886,7 @@ template {
 }
 .popup__submit-button {
   width: 100%;
+  max-width: 358px;;
   height: 50px;
   border-radius: 2px;
   background-color: #000;
@@ -864,9 +897,9 @@ template {
   font-size: 18px;
   line-height: 22px;
   text-align: center;
-  margin: 21px 0 37px;
   cursor: pointer;
   transition: opacity 1s linear;
+  margin: 0 auto 37px;
 }
 
 .popup__submit-button:hover {
@@ -876,9 +909,10 @@ template {
 @media screen and (max-width:767px) {
   .popup__submit-button {
     height: 46px;
+    max-width: 238px;
     font-size: 14px;
     line-height: 17px;
-    margin: 17px 0 25px;
+    margin: 0 auto 25px;
   }
 }
 .popup__submit-button_disabled { 
