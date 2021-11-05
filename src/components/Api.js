@@ -28,7 +28,7 @@ export default class Api {
     }
     
     removeCard(id) {
-        return this._set('cards/' + id, 'DELETE', {});
+        return this._set(`cards/${id}`, 'DELETE', {});
 
     }
 
@@ -47,7 +47,7 @@ export default class Api {
             }
         }
         return fetch(this._url(query), options)
-            .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
+            .then(this._checkResponse)
     }
 
     _set(query, method, body) {
@@ -61,8 +61,13 @@ export default class Api {
         }
         
         return fetch(this._url(query), options)
-            .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
+            .then(this._checkResponse)
     }
+    
+    _checkResponse(res) {
+       return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
+    }
+
 
     _url(query) {
         return `${this._address}/${this._groupId}/${query}`

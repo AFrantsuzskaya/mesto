@@ -7,7 +7,7 @@ import PopupWithForm  from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import './index.css';
-import Popup from "../components/Popup.js";
+import PopupWitDeleteForm from "../components/PopupWithDeleteForm.js";
 
 const openProfilePopupButton = document.querySelector('.profile__edit-button'); 
 const popupFormElementInfo = document.querySelector('.popup__form_block_info');
@@ -18,16 +18,11 @@ const inputName = document.querySelector('.popup__field_type_name');
 const inputAbout = document.querySelector('.popup__field_type_about-me');
 let userId = null;
 
-const loadingView = (popup, isLoading = false, title = 'Сохранить', loadingTitle = 'Загрузка...') => {
-  const popupSubmitButton = document.querySelector('.popup__submit-button');
-  popupSubmitButton.textContent = isLoading ? loadingTitle : title;
-}
-
 const userInfo = new UserInfo ({ 
   nameSelector:  configSelectors.profileName,
   aboutSelector: configSelectors.profileAbout,
-  avatarSelector: configSelectors.avatar
- });
+  avatarSelector: configSelectors.avatar,
+});
 
 const cardList = new Section({ 
   renderer: (item) => {
@@ -48,7 +43,6 @@ api
   .getAppInfo()
   .then(([userInfoRes, cardListRes]) => {
     userId = userInfoRes._id
-    console.log(userInfoRes._id)
     cardList.renderAll(cardListRes.reverse());
     userInfo.setUserInfo({
       name: userInfoRes.name,
@@ -59,61 +53,59 @@ api
   .catch(err => console.log(`Ошибка загрузки инициирующих данных: ${err}`))
 
 const popupAvatar = new PopupWithForm(configSelectors.popupAvatar, (data) => {
-  loadingView(popupAvatar, true, 'Сохранить', 'Сохраниние...')
+  popupAvatar.renderLoading(true, 'Сохранить', 'Сохраниние...')
   api.setUserAvatar(data.avatar)
   .then((info) => {
     userInfo.setUserInfo({
       link: info.avatar
     });
     popupAvatar.close();
+    formAddAvatarValid.disableSubmitButton();
   })
   .catch(err => console.log(`Ошибка сохранения аватара: ${err}`))
   .finally(() => {
-    loadingView(popupAvatar, false, 'Сохранить', 'Сохраниние...')
+    popupAvatar.renderLoading(false, 'Сохранить', 'Сохраниние...')
   })
-  formAddAvatarValid.disableSubmitButton();
 })
 
-const popupCardDelete = new Popup(configSelectors.popupDelete);
+const popupCardDelete = new PopupWitDeleteForm(configSelectors.popupDelete);
 
 // попап с картинкой
 const popupImage = new PopupWithImage(configSelectors.popupImageSelector);
 // попап добавляющий новую карточку
 const popupAddCard = new PopupWithForm(configSelectors.popupAddCardSelector, (data) => {
-  loadingView(popupAvatar, true, 'Создать', 'Создание...')
+  popupAddCard.renderLoading(true, 'Создать', 'Создание...')
   api
     .setCard(data.name, data.link)
-    .then((data) => {
-      api.getCardList().then((cards) => {
-      console.log(cards)
-      cardList.renderAll(cards.reverse())})
+    .then((data) => { 
+      cardList.addItem(createCard(data));
+      popupAddCard.close();
+    })
     .catch(err => console.log(`Ошибка загрузки карточки: ${err}`))
     .finally(() => {
-      loadingView(popupAvatar, false, 'Создать', 'Создание...')
+      popupAddCard.renderLoading(false, 'Создать', 'Создание...')
     })
-  })
+    
+})
   
-  formAddCardValid.disableSubmitButton();
-});
+  
 // попап личного профиля
 const popupWithProfileForm = new PopupWithForm(configSelectors.poppupProfileSelector, (data) => {
-  const newUserInfo = {
-    name: document.querySelector('.popup__field_type_name').value,
-    about: document.querySelector('.popup__field_type_about-me').value
-  };
-  loadingView(popupAvatar, true, 'Создать', 'Создание...')
+  popupWithProfileForm.renderLoading(true, 'Создать', 'Создание...')
   api
-    .setUserInfo(newUserInfo.name, newUserInfo.about)
+    .setUserInfo(data.name, data.about)
     .then((userInfoRes) => {
       userInfo.setUserInfo({
         name: userInfoRes.name,
         about: userInfoRes.about
       })
+      popupWithProfileForm.close()
     })
     .catch(err => console.log(`Ошибка сохранения данных профиля: ${err}`))
     .finally(() => {
-      loadingView(popupAvatar, false, 'Создать', 'Создание...')
+      popupWithProfileForm.renderLoading(false, 'Создать', 'Создание...')
     })
+    
 });
 
 // ф-ция создания карточки
@@ -125,24 +117,18 @@ const createCard = (data) => {
     (data) => {
       popupImage.open(data);
     }, 
-    () => {
-      function removeCard(evt) {
-        api
-          .removeCard(this._id)
-          .then(() => {
-            api
-              .getCardList()
-              .then((cards) => {
-                cardList.renderAll(cards.reverse())})
-              .catch(err => console.log(`Ошибка удаления карточки: ${err}`))
-          })
-        popupCardDelete.close();
-      }
-      removeCard.bind(data);
+    (card) => {
       popupCardDelete.open();
-      popupCardDelete._popupElement.querySelector('.popup__submit-button')
-      .addEventListener('click', removeCard.bind(data));
-    }, 
+      popupCardDelete.setSubmitHandler(() => {
+        api
+          .removeCard(card.getId())
+          .then(() => {
+            card.removeCard()
+            popupCardDelete.close()
+          })
+        .catch(err => console.log(`Ошибка удаления карточки: ${err}`))
+        })
+    },
     (card) => {
       api
         .toggleLike(card.getId(), !card.isLiked())
@@ -168,7 +154,10 @@ popupAddCard.setEventListeners();
 popupAvatar.setEventListeners();
 popupCardDelete.setEventListeners();
 
+
+
 openProfilePopupButton.addEventListener('click', function() {
+  formInfoValid.resetValidation();
   const data = userInfo.getUserInfo();
   inputName.value = data.name;
   inputAbout.value = data.about;
@@ -176,10 +165,13 @@ openProfilePopupButton.addEventListener('click', function() {
 });
 
 openPopupAddButton.addEventListener('click', () => {
+  formAddCardValid.resetValidation();
   popupAddCard.open();
+  formAddCardValid.disableSubmitButton();
 });
 
 document.querySelector('.profile__avatar').addEventListener('click', ()=> {
+  formAddAvatarValid.resetValidation();
   popupAvatar.open();
 })
 
