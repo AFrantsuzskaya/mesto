@@ -4,7 +4,6 @@ export default class Popup {
     //селектор попапа
     this._handleEscClose = this._handleEscClose.bind(this);
     //явная приявязка колбэка ф-ции
-    this._elementImage = this._popupElement.querySelector('.popup__image');
   }
 
   open() {
